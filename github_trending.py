@@ -3,12 +3,13 @@ from datetime import datetime, timedelta
 
 
 GITHUB_API_URL = "https://api.github.com"
+DISPLAY_REPOS = 20
 
 
-def github_search_repos(q, sort="stars", order="desc", page=1, per_page=20):
+def github_search_repos(query, sort="stars", order="desc", page=1, per_page=20):
     endpoint = "{}{}".format(GITHUB_API_URL, "/search/repositories")
     payload = {
-        "q": q,
+        "q": query,
         "sort": sort,
         "order": order,
         "page": page,
@@ -42,7 +43,7 @@ def get_open_issues_amount(repo_owner, repo_name):
 
 
 def main():
-    repos = get_trending_repositories(20)
+    repos = get_trending_repositories(DISPLAY_REPOS)
     print("Github trending\n")
     for repo in repos:
         # owner_name = repo["owner"]["login"]
